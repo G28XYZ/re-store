@@ -7,7 +7,7 @@ import "./app.css";
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} exact />
+      <Route path="/" element={<HomePage />} />
       <Route path="/card" element={<CardPage />} />
     </Routes>
   );
