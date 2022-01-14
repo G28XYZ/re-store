@@ -3,6 +3,10 @@ import BookListItem from "../book-list-item";
 import { connect } from "react-redux";
 
 import withBookstoreService from "../hoc";
+import { booksLoaded } from "../../actions";
+import { compose } from "../../utils";
+import withBookStoreService from "../hoc";
+
 class BookList extends Component {
   componentDidMount() {
     const { bookStoreService } = this.props;
@@ -33,15 +37,27 @@ const mapStateToProps = ({ books }) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    booksLoaded: (newBooks) => {
-      dispatch({
-        type: "BOOKS_LOADED",
-        payload: newBooks,
-      });
-    },
-  };
+const mapDispatchToProps = {
+  booksLoaded,
+  // // но можно вернуть объект вместо функции и записать проще как выше
+  // return bindActionCreators(
+  //   {
+  //     booksLoaded,
+  //   },
+  //   dispatch
+  // );
+  // // bindActionCreators возвращает такой же объект как ниже
+  // return {
+  //   booksLoaded: (newBooks) => {
+  //     dispatch(booksLoaded(newBooks));
+  //   },
+  // };
 };
 
-export default withBookstoreService()(connect(mapStateToProps, mapDispatchToProps)(BookList));
+export default compose(
+  withBookStoreService(),
+  connect(mapStateToProps, mapDispatchToProps)
+)(BookList);
+
+// compose заменяет такую запись на запись выше
+// export default withBookstoreService()(connect(mapStateToProps, mapDispatchToProps)(BookList));
