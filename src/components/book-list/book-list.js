@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import BookListItem from "../book-list-item";
 import { connect } from "react-redux";
 
-import withBookstoreService from "../hoc";
 import { booksLoaded } from "../../actions";
 import { compose } from "../../utils";
 import withBookStoreService from "../hoc";
+import "./book-list.css";
 
 class BookList extends Component {
   componentDidMount() {
@@ -18,7 +18,7 @@ class BookList extends Component {
   render() {
     const { books } = this.props;
     return (
-      <ul>
+      <ul className="book-list">
         {books.map((book) => {
           return (
             <li key={book.id}>
@@ -39,25 +39,9 @@ const mapStateToProps = ({ books }) => {
 
 const mapDispatchToProps = {
   booksLoaded,
-  // // но можно вернуть объект вместо функции и записать проще как выше
-  // return bindActionCreators(
-  //   {
-  //     booksLoaded,
-  //   },
-  //   dispatch
-  // );
-  // // bindActionCreators возвращает такой же объект как ниже
-  // return {
-  //   booksLoaded: (newBooks) => {
-  //     dispatch(booksLoaded(newBooks));
-  //   },
-  // };
 };
 
 export default compose(
   withBookStoreService(),
   connect(mapStateToProps, mapDispatchToProps)
 )(BookList);
-
-// compose заменяет такую запись на запись выше
-// export default withBookstoreService()(connect(mapStateToProps, mapDispatchToProps)(BookList));
