@@ -20,8 +20,11 @@ export default class BookstoreService {
   getBooks() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        // resolve(this.data);
-        reject(new Error("Some error"));
+        resolve(this.data);
+        if (Math.random() * 0.75) {
+        } else {
+          reject(new Error("Some error"));
+        }
       }, 1000);
     });
   }
