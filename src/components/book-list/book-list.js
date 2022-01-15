@@ -4,7 +4,7 @@ import BookListItem from "../book-list-item";
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 
-import { booksLoaded, booksRequested, booksError } from "../../actions";
+import { fetchBooks } from "../../actions";
 import { compose } from "../../utils";
 import withBookStoreService from "../hoc";
 import "./book-list.css";
@@ -12,7 +12,6 @@ import "./book-list.css";
 class BookList extends Component {
   componentDidMount() {
     this.props.fetchBooks();
-    const { bookStoreService, booksLoaded, booksRequested, booksError } = this.props;
   }
 
   render() {
@@ -45,16 +44,9 @@ const mapStateToProps = ({ books, loading, error }) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  const { bookStoreService } = ownProps;
+const mapDispatchToProps = (dispatch, { bookStoreService }) => {
   return {
-    fetchBooks: () => {
-      dispatch(booksRequested());
-      bookStoreService
-        .getBooks()
-        .then((data) => dispatch(booksLoaded(data)))
-        .catch((err) => dispatch(booksError(err)));
-    },
+    fetchBooks: fetchBooks(bookStoreService, dispatch),
   };
 };
 
