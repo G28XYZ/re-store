@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import BookListItem from "../book-list-item";
 import { connect } from "react-redux";
+import BookListItem from "../book-list-item";
+import Spinner from "../spinner";
 
 import { booksLoaded } from "../../actions";
 import { compose } from "../../utils";
@@ -9,14 +10,17 @@ import "./book-list.css";
 
 class BookList extends Component {
   componentDidMount() {
-    const { bookStoreService } = this.props;
-    const data = bookStoreService.getBooks();
-    console.log(data);
-    this.props.booksLoaded(data);
+    const { bookStoreService, booksLoaded } = this.props;
+    bookStoreService.getBooks().then((data) => {
+      booksLoaded(data);
+    });
   }
 
   render() {
-    const { books } = this.props;
+    const { books, loading } = this.props;
+    if (loading) {
+      return <Spinner />;
+    }
     return (
       <ul className="book-list">
         {books.map((book) => {
@@ -31,9 +35,10 @@ class BookList extends Component {
   }
 }
 
-const mapStateToProps = ({ books }) => {
+const mapStateToProps = ({ books, loading }) => {
   return {
     books,
+    loading,
   };
 };
 
