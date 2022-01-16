@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware } from "redux";
+import thunkMiddleWare from "redux-thunk";
 
 import reducer from "./reducers";
 
@@ -44,8 +45,23 @@ const stringMiddleware = () => (next) => (action) => {
 //     return store;
 //   };
 
-const store = createStore(reducer, applyMiddleware(stringMiddleware, logMiddleware));
+const store = createStore(
+  reducer,
+  applyMiddleware(thunkMiddleWare, stringMiddleware, logMiddleware)
+);
 
-store.dispatch("HELLO");
+// thunkMiddleWare позволяет использовать функции в качестве действий
+
+const delayActionCreator = (timeout) => (dispatch) => {
+  setTimeout(
+    () =>
+      dispatch({
+        type: "DELAYED_ACTION",
+      }),
+    timeout
+  );
+};
+
+store.dispatch(delayActionCreator(3000));
 
 export default store;
