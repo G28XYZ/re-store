@@ -32,7 +32,8 @@ React - самая популярная библиотека для разраб
 ### Установка
 
 Клонируйте репозиторий:
-git clone https://github.com/G28XYZ/re-store.git
+«`{} {git clone https://github.com/G28XYZ/re-store.git}«`
+
 
 Перейдите в папку склонированного репозитория
 cd re-sote
