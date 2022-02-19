@@ -1,6 +1,6 @@
 # Демо
 
-<img src="https://github.com/G28XYZ/G28XYZ/blob/main/images/demo%20re-store.gif" alt="re-store">
+<img src="https://github.com/G28XYZ/G28XYZ/blob/main/images/demo-re-store.gif" alt="re-store">
 
 
 # Проект re-store
