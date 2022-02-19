@@ -1,3 +1,7 @@
+# Демо
+
+<img src="https://github.com/G28XYZ/G28XYZ/blob/main/images/demo%20re-store.gif" alt="re-store">
+
 # Проект re-store
 
 В котором можно добавить/удалить из корзины выбранные товары. Это один из проектов курса - Профессиональная Разработка от Juriy Bura.
