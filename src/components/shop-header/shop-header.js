@@ -1,8 +1,9 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import "./shop-header.css";
 
-const ShopHeader = ({ numItems, total }) => {
+const ShopHeader = ({ items, total }) => {
   return (
     <header className="shop-header">
       <Link to="/">
@@ -11,11 +12,18 @@ const ShopHeader = ({ numItems, total }) => {
       <Link to="/card">
         <div className="shopping-cart">
           <i className="cart-icon fas fa-shopping-cart" />
-          {numItems} items (${total})
+          {items.length} items (${total})
         </div>
       </Link>
     </header>
   );
 };
 
-export default ShopHeader;
+const mapStateToProps = ({ shoppingCart: { cartItems, orderTotal } }) => {
+  return {
+    items: cartItems,
+    total: orderTotal,
+  };
+};
+
+export default connect(mapStateToProps)(ShopHeader);
