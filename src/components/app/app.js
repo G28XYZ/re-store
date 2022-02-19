@@ -9,7 +9,7 @@ const App = () => {
     <main role="main" className="container">
       <ShopHeader />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/re-store" element={<HomePage />} />
         <Route path="/card" element={<CardPage />} />
       </Routes>
     </main>

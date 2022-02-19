@@ -6,7 +6,7 @@ import "./shop-header.css";
 const ShopHeader = ({ items, total }) => {
   return (
     <header className="shop-header">
-      <Link to="/">
+      <Link to="/re-store">
         <div className="logo text-dark">ReStore</div>
       </Link>
       <Link to="/card">
